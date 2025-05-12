@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RedcircleComponent } from '../../elements/redcircle/redcircle.component';
 
 @Component({
   selector: 'app-contact',
-  imports: [],
+  imports: [RedcircleComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
