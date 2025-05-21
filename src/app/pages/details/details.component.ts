@@ -17,7 +17,11 @@ export class DetailsComponent {
  detalleProducto: Product | undefined;
  constructor() {
    const idProducto = Number(this.route.snapshot.params['id']);
-   this.detalleProducto = this.productoService.obtenerProductoPorId(idProducto)
+   this.productoService.obtenerProductoPorId(idProducto).subscribe({
+    next: (value) => { this.detalleProducto = value },
+    error: (error) => console.log(error),
+    complete: () => console.log('end')
+   })
    console.log(this.detalleProducto)
  }
 }

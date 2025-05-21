@@ -15,6 +15,10 @@ export class StoreComponent {
   listaDeProductos: Product[] = [];
 
   constructor () {
-    this.listaDeProductos = this.productoService.obtenerProductos();
+    this.productoService.obtenerProductos().subscribe({
+      next: (value) => { this.listaDeProductos = value },
+      error: (e) => console.log(e),
+      complete: () => console.log('end') 
+    })
   }
 }
