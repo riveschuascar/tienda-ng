@@ -18,6 +18,6 @@ export class UsuarioService {
 
   eliminarUsuario(idUsuario: number) {
     let urlFinal = this.url+idUsuario;
-    return this.http.delete(urlFinal)
+    return this.http.delete(urlFinal, {observe: 'response'});
   }
 }
