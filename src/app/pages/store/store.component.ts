@@ -1,12 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { RedcircleComponent } from '../../elements/redcircle/redcircle.component';
 import { ProductComponent } from '../../elements/product/product.component';
 import { ProductoService } from '../../services/producto.service';
 import { Product } from '../../interfaces/product';
 
 @Component({
   selector: 'app-store',
-  imports: [RedcircleComponent, ProductComponent],
+  imports: [ ProductComponent],
   templateUrl: './store.component.html',
   styleUrl: './store.component.scss'
 })
