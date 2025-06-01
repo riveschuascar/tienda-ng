@@ -5,13 +5,24 @@ import { StoreComponent } from './pages/store/store.component';
 import { AboutusComponent } from './pages/aboutus/aboutus.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { DetailsComponent } from './pages/details/details.component';
+import { AddProductComponent } from './pages/add-product/add-product.component';
+import { EditProductComponent } from './pages/edit-product/edit-product.component';
 
 export const routes: Routes = [
-    { path: 'home', component: HomeComponent },
-    { path: 'contact', component: ContactComponent },
-    { path: 'aboutus', component: AboutusComponent },
-    { path: 'store', component: StoreComponent },
-    { path: 'details/:id', component: DetailsComponent},
-    { path: '', redirectTo: 'home', pathMatch: 'full'},
-    { path: '**', component: NotfoundComponent}
+  { path: 'home', component: HomeComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'aboutus', component: AboutusComponent },
+  { path: 'store', component: StoreComponent },
+  { path: 'details/:id', component: DetailsComponent },
+  { path: 'add-product', component: AddProductComponent },  // 👈 Asegúrate de tener esta línea
+  { path: 'edit-product/:id', component: EditProductComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', component: NotfoundComponent }
 ];
+
+
+
+
+
+
+

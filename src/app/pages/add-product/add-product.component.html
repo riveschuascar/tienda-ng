@@ -1,0 +1,30 @@
+<h2>Agregar Producto</h2>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <label>
+    Título:
+    <input type="text" formControlName="title">
+  </label>
+
+  <label>
+    Precio:
+    <input type="number" formControlName="price">
+  </label>
+
+  <label>
+    Descripción:
+    <textarea formControlName="description"></textarea>
+  </label>
+
+  <label>
+    Categoría:
+    <input type="text" formControlName="category">
+  </label>
+
+  <label>
+    URL de Imagen:
+    <input type="text" formControlName="image">
+  </label>
+
+  <button type="submit" [disabled]="productForm.invalid">Guardar</button>
+</form>
