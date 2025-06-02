@@ -1,0 +1,25 @@
+<h2>🛒 Carrito</h2>
+
+<div *ngIf="cart.length > 0; else vacio">
+  <div *ngFor="let producto of cart">
+    <p>
+      {{ producto.title }} - ${{ producto.price }}
+      <br>
+      Cantidad:
+      <input type="number"
+             [value]="producto.quantity || 1"
+             min="1"
+             (change)="onCantidadCambiada($event, producto.id)">
+      <br>
+      Subtotal: ${{ producto.price * (producto.quantity || 1) }}
+    </p>
+    <button (click)="removeItem(producto.id)">Quitar</button>
+    <hr>
+  </div>
+
+  <p><strong>Total: ${{ getTotal() }}</strong></p>
+</div>
+
+<ng-template #vacio>
+  <p>El carrito está vacío.</p>
+</ng-template>

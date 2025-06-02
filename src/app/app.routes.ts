@@ -7,6 +7,8 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { DetailsComponent } from './pages/details/details.component';
 import { AddProductComponent } from './pages/add-product/add-product.component';
 import { EditProductComponent } from './pages/edit-product/edit-product.component';
+import { CartComponent } from './pages/cart/cart.component';
+
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -15,6 +17,7 @@ export const routes: Routes = [
   { path: 'store', component: StoreComponent },
   { path: 'details/:id', component: DetailsComponent },
   { path: 'add-product', component: AddProductComponent },  // 👈 Asegúrate de tener esta línea
+  { path: 'cart', component: CartComponent },
   { path: 'edit-product/:id', component: EditProductComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: NotfoundComponent }

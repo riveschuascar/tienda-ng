@@ -1,22 +1,25 @@
-<div class="contenedor-boton" style="margin-bottom: 1rem;">
-    <a routerLink="/add-product">
-        <button>Agregar nuevo producto</button>
-    </a>
+<div class="contenedor-boton" style="margin-bottom: 1rem; display: flex; gap: 1rem;">
+  <a routerLink="/add-product">
+    <button>➕ Agregar nuevo producto</button>
+  </a>
+
+  <a routerLink="/cart">
+    <button>🛒 Ver carrito</button>
+  </a>
 </div>
 
-
 <div class="contenedor-productos">
-    @for (producto of listaDeProductos; track producto.id) {
+  @for (producto of listaDeProductos; track producto.id) {
     <div>
-        <app-product [producto]="producto"></app-product>
+      <app-product [producto]="producto"></app-product>
 
-        <a [routerLink]="'/edit-product/' + producto.id">
-            <button>Editar</button>
-        </a>
-        <button (click)="eliminarProducto(producto.id)">Eliminar</button>
+      <a [routerLink]="'/edit-product/' + producto.id">
+        <button>✏️ Editar</button>
+      </a>
+
+      <button (click)="eliminarProducto(producto.id)">🗑️ Eliminar</button>
     </div>
-
-    } @empty {
+  } @empty {
     <p>No existen productos</p>
-    }
+  }
 </div>
