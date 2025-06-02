@@ -7,15 +7,29 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductoService {
-  url = 'https://fakestoreapi.com/products'
+  url = 'https://fakestoreapi.com/products';
 
   constructor(private http: HttpClient) { }
-  
+
   obtenerProductos(): Observable<Product[]> {
     return this.http.get<Product[]>(this.url);
   }
 
-  obtenerProductoPorId(id: number) {
-    return this.http.get<Product>(this.url + '/' + id);
+  obtenerProductoPorId(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.url}/${id}`);
   }
+
+  crearProducto(producto: Omit<Product, 'id' | 'rating'>): Observable<Product> {
+    return this.http.post<Product>(this.url, producto);
+  }
+
+  actualizarProducto(id: number, producto: Omit<Product, 'id' | 'rating'>): Observable<Product> {
+  return this.http.put<Product>(`${this.url}/${id}`, producto);
+  }
+
+  eliminarProducto(id: number): Observable<any> {
+  return this.http.delete(`${this.url}/${id}`);
+  }
+
 }
+

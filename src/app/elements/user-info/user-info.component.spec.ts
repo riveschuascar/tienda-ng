@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RedcircleComponent } from './redcircle.component';
+import { UserInfoComponent } from './user-info.component';
 
-describe('RedcircleComponent', () => {
-  let component: RedcircleComponent;
-  let fixture: ComponentFixture<RedcircleComponent>;
+describe('UserInfoComponent', () => {
+  let component: UserInfoComponent;
+  let fixture: ComponentFixture<UserInfoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RedcircleComponent]
+      imports: [UserInfoComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RedcircleComponent);
+    fixture = TestBed.createComponent(UserInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

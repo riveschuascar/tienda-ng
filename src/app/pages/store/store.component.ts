@@ -1,24 +1,54 @@
-import { Component, inject } from '@angular/core';
-import { RedcircleComponent } from '../../elements/redcircle/redcircle.component';
+import { Component, inject, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs';
 import { ProductComponent } from '../../elements/product/product.component';
 import { ProductoService } from '../../services/producto.service';
 import { Product } from '../../interfaces/product';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-store',
-  imports: [RedcircleComponent, ProductComponent],
+  standalone: true,
+  imports: [ProductComponent, RouterModule],
   templateUrl: './store.component.html',
   styleUrl: './store.component.scss'
 })
-export class StoreComponent {
-  productoService: ProductoService = inject(ProductoService);
+export class StoreComponent implements OnInit {
+  productoService = inject(ProductoService);
+  router = inject(Router);
   listaDeProductos: Product[] = [];
 
-  constructor () {
+  ngOnInit() {
+    this.cargarProductos();
+
+    // Se asegura de actualizar la vista al volver a esta ruta
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event) => {
+      if ((event as NavigationEnd).url === '/store') {
+        this.cargarProductos();
+      }
+    });
+  }
+
+  cargarProductos() {
     this.productoService.obtenerProductos().subscribe({
       next: (value) => { this.listaDeProductos = value },
       error: (e) => console.log(e),
-      complete: () => console.log('end') 
-    })
+      complete: () => console.log('end')
+    });
   }
+
+  eliminarProducto(id: number) {
+    if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+      this.productoService.eliminarProducto(id).subscribe({
+        next: () => {
+          alert('Producto eliminado');
+          this.listaDeProductos = this.listaDeProductos.filter(p => p.id !== id);
+        },
+        error: () => alert('No se pudo eliminar el producto')
+      });
+    }
+  }
+
 }
