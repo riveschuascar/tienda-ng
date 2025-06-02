@@ -1,12 +1,62 @@
-.contenedor-productos {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    flex-wrap: wrap;
+.barra-superior {
+  text-align: center;
+  margin-bottom: 2rem;
+}
 
-    div {
-        flex-basis: 25%;
-        flex-grow: 1;
-        flex-shrink: 1;
-    }
+.contenedor-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.card-producto {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+.acciones {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.btn-add {
+  background-color: #4CAF50; // verde material
+}
+
+.btn-edit {
+  background-color: #FFC107; // amarillo material
+  color: #000;
+}
+
+.btn-delete {
+  background-color: #F44336; // rojo material
+}
+
+.btn:hover {
+  opacity: 0.9;
 }

@@ -1,31 +1,32 @@
-<h2>Editar Producto</h2>
+<div class="form-container">
+  <h2>Editar Producto</h2>
 
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-  <label>
-    Título:
-    <input type="text" formControlName="title">
-  </label>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Título:</label>
+      <input id="title" type="text" formControlName="title">
+    </div>
 
-  <label>
-    Precio:
-    <input type="number" formControlName="price">
-  </label>
+    <div class="form-group">
+      <label for="price">Precio:</label>
+      <input id="price" type="number" formControlName="price">
+    </div>
 
-  <label>
-    Descripción:
-    <textarea formControlName="description"></textarea>
-  </label>
+    <div class="form-group">
+      <label for="description">Descripción:</label>
+      <textarea id="description" rows="3" formControlName="description"></textarea>
+    </div>
 
-  <label>
-    Categoría:
-    <input type="text" formControlName="category">
-  </label>
+    <div class="form-group">
+      <label for="category">Categoría:</label>
+      <input id="category" type="text" formControlName="category">
+    </div>
 
-  <label>
-    URL de Imagen:
-    <input type="text" formControlName="image">
-  </label>
+    <div class="form-group">
+      <label for="image">URL de Imagen:</label>
+      <input id="image" type="text" formControlName="image">
+    </div>
 
-  <button type="submit" [disabled]="productForm.invalid">Guardar cambios</button>
-</form>
-
+    <button type="submit" [disabled]="productForm.invalid">💾 Guardar cambios</button>
+  </form>
+</div>
