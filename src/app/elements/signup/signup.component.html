@@ -1,0 +1,74 @@
+<!-- src/app/elements/signup/signup.component.html -->
+<div class="signup-container">
+  <h2>Sign Up</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div>
+      <label for="firstname">Nombre:</label>
+      <input
+        id="firstname"
+        name="firstname"
+        ((ngModel))="user.name.firstname"
+        placeholder="First Name"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="lastname">Apellido:</label>
+      <input
+        id="lastname"
+        name="lastname"
+        ((ngModel))="user.name.lastname"
+        placeholder="Last Name"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="email">Email:</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        ((ngModel))="user.email"
+        placeholder="Email"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="username">Usuario:</label>
+      <input
+        id="username"
+        name="username"
+        ((ngModel))="user.username"
+        placeholder="Username"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="password">Contraseña:</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        ((ngModel))="user.password"
+        placeholder="Password"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="phone">Teléfono:</label>
+      <input
+        id="phone"
+        name="phone"
+        ((ngModel))="user.phone"
+        placeholder="Phone"
+      />
+    </div>
+
+    <button type="submit">Registrarse</button>
+  </form>
+</div>
