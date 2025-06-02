@@ -1,26 +1,45 @@
 import { Component, inject, Input } from '@angular/core';
-import { User } from '../../interfaces/user';
+import { PartialUser } from '../../interfaces/user';
 import { UsuarioService } from '../../services/usuario.service';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../../services/UserService';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user-profile',
-  imports: [FormsModule],
+  imports: [ CommonModule, FormsModule],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss'
 })
 export class UserProfileComponent {
-  servicioUsuarios: UsuarioService = inject(UsuarioService);
+  route = inject(ActivatedRoute);
+  servicioUsuarios1: UsuarioService = inject(UsuarioService);
+  servicioUsuarios2: UserService = inject(UserService);
+
   @Input() nombreUsuario: string = '';
   @Input() correo: string = '';
   @Input() contrasena: string = '';
-  usuario!: User;
 
-  constructor(private router: Router) {}
+  usuario!: PartialUser;
+  mostrarContrasena: boolean = false;
+
+  constructor(private router: Router) {
+    const idUsuario = Number(this.route.snapshot.params['id']);
+    this.servicioUsuarios2.getUser(idUsuario).subscribe({
+      next: (value) => {
+        this.usuario = value;
+        this.nombreUsuario = `${value.name.firstname} ${value.name.lastname}`;
+        this.correo = value.email;
+        this.contrasena = value.password;
+      },
+      error: (error) => console.log(error),
+      complete: () => console.log(this.usuario)
+    });
+  }
 
   actualizarDatosUsuario(idUsuario: number, nombreUsuario: string, correo: string, contrasena: string) {
-    this.servicioUsuarios.actualizarUsuario(idUsuario, nombreUsuario, correo, contrasena).subscribe({
+    this.servicioUsuarios1.actualizarUsuario(idUsuario, nombreUsuario, correo, contrasena).subscribe({
       next: (respuesta) => console.log(respuesta),
       error: (e) => console.log(e),
       complete: () => console.log("Operacion terminada")
@@ -28,7 +47,7 @@ export class UserProfileComponent {
   }
 
   eliminarUsuario(idUsuario: number) {
-    this.servicioUsuarios.eliminarUsuario(idUsuario).subscribe({
+    this.servicioUsuarios1.eliminarUsuario(idUsuario).subscribe({
       next: (respuesta) => {
         if (respuesta.status == 200) {
           console.log("Usuario eliminado correctamente");

@@ -17,14 +17,14 @@ export interface Name {
 }
 
 export interface User {
-  address: Address;
+  address?: Address;
   id: number;
   email: string;
   username: string;
   password: string;
   name: Name;
-  phone: string;
-  __v: number;
+  phone?: string;
+  __v?: number;
 }
 
 export interface PartialUser {

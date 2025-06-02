@@ -24,7 +24,7 @@ export const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'users', component: UsersComponent },
   { path: 'edit-product/:id', component: EditProductComponent },
-  { path: 'profile', component: UserProfileComponent},
+  { path: 'profile/:id', component: UserProfileComponent},
   { path: 'signup', component: SignupComponent },
   { path: 'user-info', component: UserInfoComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

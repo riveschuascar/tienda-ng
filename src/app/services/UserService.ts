@@ -2,18 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface Usuario {
-  id?: number;
-  email: string;
-  username: string;
-  password?: string;
-  name: {
-    firstname: string;
-    lastname: string;
-  };
-  phone?: string;
-}
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -23,15 +12,15 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getAllUsers(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.url);
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.url);
   }
 
-  getUser(id: number): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.url}/${id}`);
+  getUser(id: number): Observable<User> {
+    return this.http.get<User>(`${this.url}/${id}`);
   }
 
-  addUser(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(this.url, usuario);
+  addUser(usuario: User): Observable<User> {
+    return this.http.post<User>(this.url, usuario);
   }
 }

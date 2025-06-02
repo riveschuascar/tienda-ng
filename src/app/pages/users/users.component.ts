@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserService, Usuario } from '../../services/UserService';
+import { UserService } from '../../services/UserService';
+import { RouterLink } from '@angular/router';
+import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  usuarios: Usuario[] = [];
+  usuarios: User[] = [];
 
   constructor(private userService: UserService) {}
 

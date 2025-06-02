@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { UserService, Usuario } from '../../services/UserService';
+import { UserService } from '../../services/UserService';
+import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-signup',
@@ -12,17 +13,15 @@ import { UserService, Usuario } from '../../services/UserService';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
+
 export class SignupComponent {
-  user: Usuario = {
+  user: User = {
+    id: 0,
     email: '',
     username: '',
     password: '',
-    name: {
-      firstname: '',
-      lastname: ''
-    },
-    phone: ''
-  };
+    name: {firstname: '', lastname: ''}
+  }
 
   constructor(private userService: UserService) {}
 
@@ -31,13 +30,6 @@ export class SignupComponent {
       next: (res) => {
         console.log('Usuario creado:', res);
         alert(`Usuario creado con ID ${res.id}`);
-        this.user = {
-          email: '',
-          username: '',
-          password: '',
-          name: { firstname: '', lastname: '' },
-          phone: ''
-        };
       },
       error: (err) => {
         console.error('Error al crear usuario:', err);

@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { UserService, Usuario } from '../../services/UserService';
+import { UserService } from '../../services/UserService';
+import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-user-info',
@@ -18,7 +19,7 @@ import { UserService, Usuario } from '../../services/UserService';
 })
 export class UserInfoComponent {
   userId!: number;
-  userData?: Usuario;
+  userData?: User;
   errorMsg: string = '';
 
   constructor(private userService: UserService) {}

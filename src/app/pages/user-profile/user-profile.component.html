@@ -1,18 +1,23 @@
-<div class="form-nuevos-datos">
+<div class="form-nuevos-datos" *ngIf="usuario">
   <label for="nombre">Nombre de Usuario:</label>
   <input type="text" id="nombre" [(ngModel)]="nombreUsuario" />
 
-  <label for="correo">Correo Electrónico:</label>
+  <label for="correo">Correo:</label>
   <input type="email" id="correo" [(ngModel)]="correo" />
 
-  <label for="contrasena">Contraseña:</label>
-  <input type="password" id="contrasena" [(ngModel)]="contrasena" />
+  <label for="contrasena">Contrasena:</label>
+  <div class="input-contrasena">
+    <input [type]="mostrarContrasena ? 'text' : 'password'" id="contrasena" [(ngModel)]="contrasena" />
+    <button type="button" (click)="mostrarContrasena = !mostrarContrasena">
+      {{ mostrarContrasena ? '🙈 Ocultar' : '👁️ Ver' }}
+    </button>
+  </div>
 
-  <button (click)="actualizarDatosUsuario(1, nombreUsuario, correo, contrasena)">
+  <button (click)="actualizarDatosUsuario(usuario.id, nombreUsuario, correo, contrasena)">
     Actualizar Datos
   </button>
 </div>
 
-<div class="btn-eliminar-usuario">
-    <button (click)="eliminarUsuario(1)">Eliminar Usuario</button>
+<div class="btn-eliminar-usuario" *ngIf="usuario">
+  <button (click)="eliminarUsuario(usuario.id)">Eliminar Usuario</button>
 </div>
