@@ -1,14 +1,20 @@
 <div class="contenedor-producto">
-    <h2 class="titulo">{{producto.title}}</h2>
-    <div class="contenedor-imagen">
-        <img src="{{producto.image}}" alt="">
-    </div>
-    <div>
-        <span class="clasificacion-titulo">Clasificación: </span><span>{{producto.rating.rate}}</span>
-    </div>
-    <p>{{producto.description}}</p>
-    <div>
-        <span>Precio:</span><span>{{producto.price}}</span>
-    </div>
-    <a [routerLink]="['/details', producto.id]">Ver detalles</a>
+  <h2 class="titulo">{{ producto.title }}</h2>
+
+  <div class="contenedor-imagen">
+    <img [src]="producto.image" alt="">
+  </div>
+
+  <div>
+    <span class="clasificacion-titulo">Clasificación: </span>
+    <span>{{ producto.rating?.rate }}</span> <!-- ✅ Corrección aquí -->
+  </div>
+
+  <p>{{ producto.description }}</p>
+
+  <div>
+    <span>Precio:</span><span>{{ producto.price }}</span>
+  </div>
+
+  <a [routerLink]="['/details', producto.id]">Ver detalles</a>
 </div>

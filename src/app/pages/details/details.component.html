@@ -8,6 +8,7 @@
    <p><strong>¡Ahora a la venta por solo ${{detalleProducto?.price}}</strong></p>
    <p><span>Calificación de nuestros consumidores: </span> <strong>{{detalleProducto?.rating?.rate}}/5</strong></p>
    <p>{{detalleProducto?.description}}</p>
-   <button>AÑADIR AL CARRITO</button>
+  <button (click)="addToCart()">AÑADIR AL CARRITO</button>
+
  </div>
 </div>
