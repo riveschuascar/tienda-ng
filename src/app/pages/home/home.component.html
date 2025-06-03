@@ -1,2 +1,75 @@
-<p>home works!</p>
-<app-greeting></app-greeting>
+<!-- HERO CON FONDO -->
+<div class="hero">
+    <div class="hero-content">
+        <h1>Bienvenido a <span class="marca">MegaTienda</span></h1>
+        <p>Encuentra moda, tecnología y más... ¡al mejor precio!</p>
+        <div class="botones-home">
+            <a class="btn-hero" routerLink="/store">Ver productos</a>
+            <a class="btn-secundario" routerLink="/cart">🛒 Ir al carrito</a>
+        </div>
+    </div>
+</div>
+
+<!-- SECCIÓN DE CATEGORÍAS -->
+<section class="categorias">
+    <h2>Categorías</h2>
+    <div class="grid-categorias">
+        <!-- Puedes reemplazar los src con imágenes reales luego -->
+        <div class="categoria-card">
+            <img src="assets/img/ropa.jpg" alt="Ropa">
+            <p>Ropa</p>
+        </div>
+        <div class="categoria-card">
+            <img src="assets/img/electronica.jpg" alt="Electrónica">
+            <p>Electrónica</p>
+        </div>
+        <div class="categoria-card">
+            <img src="assets/img/accesorios.jpeg" alt="Accesorios">
+            <p>Accesorios</p>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCTOS DESTACADOS -->
+<section class="destacados">
+    <h2>Ofertas de la semana 🔥</h2>
+    <div class="cards">
+        <div class="card">
+            <img src="https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg" alt="Producto">
+            <h3>Camisa Casual</h3>
+            <p class="precio-oferta">Antes: $35.00 — <strong>Ahora: $22.30</strong></p>
+        </div>
+        <div class="card">
+            <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="Producto">
+            <h3>Mochila Urbana</h3>
+            <p class="precio-oferta">Antes: $120.00 — <strong>Ahora: $109.95</strong></p>
+        </div>
+    </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="info-extra">
+    <div>
+        <h2>🚚 Envío rápido</h2>
+        <p>Entregas en menos de 48h a todo el país.</p>
+    </div>
+    <div>
+        <h2>🛍️ Variedad garantizada</h2>
+        <p>Productos para todos los estilos y presupuestos.</p>
+    </div>
+    <div>
+        <h2>🔒 Pagos seguros</h2>
+        <p>Compra protegida con múltiples métodos de pago.</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>&copy; 2025 MegaTienda. Todos los derechos reservados.</p>
+    <div class="redes">
+        <a href="#"><img src="assets/img/face.png" alt="Facebook"></a>
+        <a href="#"><img src="assets/img/instagram.png" alt="Instagram"></a>
+        <a href="#"><img src="assets/img/twitter.png" alt="Twitter"></a>
+        <a href="#"><img src="assets/img/youtube.png" alt="YouTube"></a>
+    </div>
+</footer>
