@@ -62,8 +62,20 @@
 }
 
 .categoria-card {
-  width: 150px;
+  width: 160px;
   text-align: center;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 87, 34, 0.4);
+    background-color: #fffbe6;
+  }
 }
 
 .categoria-card img {
@@ -72,6 +84,18 @@
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.categoria-card:hover img {
+  transform: scale(1.08);
+}
+
+.categoria-card p {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #333;
+  margin-top: 0.5rem;
 }
 
 .destacados {

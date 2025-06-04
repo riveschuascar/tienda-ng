@@ -12,40 +12,39 @@
 
 <!-- SECCIÓN DE CATEGORÍAS -->
 <section class="categorias">
-    <h2>Categorías</h2>
-    <div class="grid-categorias">
-        <!-- Puedes reemplazar los src con imágenes reales luego -->
-        <div class="categoria-card">
-            <img src="assets/img/ropa.jpg" alt="Ropa">
-            <p>Ropa</p>
-        </div>
-        <div class="categoria-card">
-            <img src="assets/img/electronica.jpg" alt="Electrónica">
-            <p>Electrónica</p>
-        </div>
-        <div class="categoria-card">
-            <img src="assets/img/accesorios.jpeg" alt="Accesorios">
-            <p>Accesorios</p>
-        </div>
+  <h2>Categorías</h2>
+  <div class="grid-categorias">
+    <div class="categoria-card">
+      <img src="assets/img/ropa.jpg" alt="Ropa">
+      <p>Ropa</p>
     </div>
+    <div class="categoria-card">
+      <img src="assets/img/electronica.jpg" alt="Electrónica">
+      <p>Electrónica</p>
+    </div>
+    <div class="categoria-card">
+      <img src="assets/img/accesorios.jpeg" alt="Accesorios">
+      <p>Accesorios</p>
+    </div>
+  </div>
 </section>
+
 
 <!-- PRODUCTOS DESTACADOS -->
 <section class="destacados">
-    <h2>Ofertas de la semana 🔥</h2>
-    <div class="cards">
-        <div class="card">
-            <img src="https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg" alt="Producto">
-            <h3>Camisa Casual</h3>
-            <p class="precio-oferta">Antes: $35.00 — <strong>Ahora: $22.30</strong></p>
-        </div>
-        <div class="card">
-            <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="Producto">
-            <h3>Mochila Urbana</h3>
-            <p class="precio-oferta">Antes: $120.00 — <strong>Ahora: $109.95</strong></p>
-        </div>
+  <h2>Ofertas de la semana 🔥</h2>
+  <div class="cards">
+    <div class="card" *ngFor="let producto of productosDestacados">
+      <img [src]="producto.image" alt="{{ producto.title }}">
+      <h3>{{ producto.title }}</h3>
+      <p class="precio-oferta">Antes: ${{ (producto.price * 1.3) | number:'1.2-2' }} — 
+        <strong>Ahora: ${{ producto.price | number:'1.2-2' }}</strong>
+      </p>
+      <button class="btn btn-cart" (click)="addToCart(producto)">🛒 Agregar al carrito</button>
     </div>
+  </div>
 </section>
+
 
 <!-- BENEFICIOS -->
 <section class="info-extra">
