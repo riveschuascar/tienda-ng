@@ -1,57 +1,79 @@
+.cart-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
 h2 {
-  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #343a40;
+}
+
+.cart-empty {
+  text-align: center;
+  color: #888;
+  font-size: 1.2rem;
+}
+
+.cart-item {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.item-info h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.item-info p {
+  margin: 0.25rem 0;
+}
+
+.cart-total {
+  text-align: right;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  font-weight: bold;
   color: #2c3e50;
 }
 
-div[ngforof] {
-  background: #f8f9fa;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  border-left: 5px solid #3498db;
-  border-radius: 6px;
-  transition: box-shadow 0.3s;
-}
-
-div[ngforof]:hover {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-}
-
-input[type="number"] {
-  width: 60px;
-  padding: 4px;
-  margin-top: 4px;
-  border: 1px solid #ccc;
+.product-image {
+  width: 100px;
+  height: auto;
   border-radius: 4px;
+  margin-right: 1rem;
 }
 
-button {
-  background-color: #e74c3c;
+
+.btn-clear {
+  background-color: #dc3545;
   color: white;
+  padding: 0.5rem 1rem;
   border: none;
-  padding: 6px 12px;
-  margin-top: 0.5rem;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  margin-top: 1rem;
+  float: right;
 }
 
-button:hover {
-  background-color: #c0392b;
+.btn-clear:hover {
+  background-color: #bb2d3b;
 }
 
-strong {
-  font-size: 1.2rem;
-  color: #27ae60;
+.cart-summary {
+  text-align: right;
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #444;
 }
 
-hr {
-  border: none;
-  border-top: 1px dashed #ccc;
-  margin: 1rem 0;
-}
-
-ng-template p {
-  font-style: italic;
-  color: #7f8c8d;
-}

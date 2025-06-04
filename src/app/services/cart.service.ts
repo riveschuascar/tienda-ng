@@ -34,4 +34,9 @@ export class CartService {
     this.cart = [];
     this.cartSubject.next([]);
   }
+  getCartItem(id: number): Product | undefined {
+    return this.cart.find(p => p.id === id);
+  }
 }
+
+

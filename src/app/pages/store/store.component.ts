@@ -5,16 +5,18 @@ import { ProductComponent } from '../../elements/product/product.component';
 import { ProductoService } from '../../services/producto.service';
 import { Product } from '../../interfaces/product';
 import { RouterModule } from '@angular/router';
+import { CartService } from '../../services/cart.service';  // ← Corrección aquí
 
 @Component({
   selector: 'app-store',
   standalone: true,
   imports: [ProductComponent, RouterModule],
   templateUrl: './store.component.html',
-  styleUrl: './store.component.scss'
+  styleUrls: ['./store.component.scss']  // ← También corregido
 })
 export class StoreComponent implements OnInit {
   productoService = inject(ProductoService);
+  cartService = inject(CartService);  // ← Ya está bien tipado
   router = inject(Router);
   listaDeProductos: Product[] = [];
 
@@ -51,4 +53,8 @@ export class StoreComponent implements OnInit {
     }
   }
 
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+    alert('Producto agregado al carrito');
+  }
 }

@@ -1,25 +1,38 @@
-<h2>🛒 Carrito</h2>
+<div class="cart-container">
+  <h2>🛒 Carrito</h2>
 
-<div *ngIf="cart.length > 0; else vacio">
-  <div *ngFor="let producto of cart">
-    <p>
-      {{ producto.title }} - ${{ producto.price }}
-      <br>
-      Cantidad:
-      <input type="number"
-             [value]="producto.quantity || 1"
-             min="1"
-             (change)="onCantidadCambiada($event, producto.id)">
-      <br>
-      Subtotal: ${{ producto.price * (producto.quantity || 1) }}
-    </p>
-    <button (click)="removeItem(producto.id)">Quitar</button>
-    <hr>
+  <div *ngIf="cartItems.length === 0" class="cart-empty">
+    <p>El carrito está vacío.</p>
   </div>
 
-  <p><strong>Total: ${{ getTotal() }}</strong></p>
-</div>
+  <div *ngFor="let item of cartItems" class="cart-item">
+    <img [src]="item.image" alt="{{ item.title }}" class="product-image" />
+    <div class="item-info">
+      <div class="quantity-control">
+        <button (click)="decrementQuantity(item.id)">−</button>
+        <span>{{ item.quantity || 1 }}</span>
+        <button (click)="incrementQuantity(item.id)">+</button>
+      </div>
+      <h3>{{ item.title }}</h3>
+      <p>Precio: <strong>${{ item.price }}</strong></p>
+      <p>Cantidad: {{ item.quantity || 1 }}</p>
+    </div>
+  </div>
 
-<ng-template #vacio>
-  <p>El carrito está vacío.</p>
-</ng-template>
+  <div *ngIf="cartItems.length > 0" class="cart-total">
+    <p><strong>Total:</strong> ${{ getTotal() }}</p>
+  </div>
+
+  <!-- ✅ Mostrar solo si hay productos -->
+  <div *ngIf="cartItems.length > 0">
+    <div class="cart-actions">
+      <button (click)="clearCart()" class="btn-clear">Vaciar carrito</button>
+    </div>
+
+    <div class="cart-summary">
+      <p>Subtotal: ${{ getTotal() }}</p>
+      <p>Envío: $10</p>
+      <p><strong>Total final: ${{ getTotal() + 10 }}</strong></p>
+    </div>
+  </div>
+</div>
