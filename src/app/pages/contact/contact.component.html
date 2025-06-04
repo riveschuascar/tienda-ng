@@ -1,2 +1,17 @@
-<p>contact works!</p>
+<div class="contact-container">
+  <h1>Contáctanos</h1>
+  <p>¿Tienes dudas, sugerencias o necesitas ayuda? ¡Escríbenos!</p>
 
+  <form [formGroup]="contactForm" (ngSubmit)="enviarMensaje()">
+    <label for="nombre">Nombre:</label>
+    <input id="nombre" type="text" formControlName="nombre" placeholder="Tu nombre completo">
+
+    <label for="correo">Correo electrónico:</label>
+    <input id="correo" type="email" formControlName="correo" placeholder="ejemplo@correo.com">
+
+    <label for="mensaje">Mensaje:</label>
+    <textarea id="mensaje" rows="5" formControlName="mensaje" placeholder="Escribe tu mensaje..."></textarea>
+
+    <button type="submit">Enviar mensaje</button>
+  </form>
+</div>
