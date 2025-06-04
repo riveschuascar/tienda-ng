@@ -40,7 +40,19 @@ export class UserProfileComponent {
 
   actualizarDatosUsuario(idUsuario: number, nombreUsuario: string, correo: string, contrasena: string) {
     this.servicioUsuarios1.actualizarUsuario(idUsuario, nombreUsuario, correo, contrasena).subscribe({
-      next: (respuesta) => console.log(respuesta),
+      next: (respuesta) => {
+        switch (respuesta.status) {
+          case 200:
+            alert('Datos actualizados correctamente')
+            break;
+          case 400:
+            alert('Error al mandar la solicitud a la API')
+            break;
+          default:
+            alert('Sucedio un error inesperado')
+            break;
+        }
+      },
       error: (e) => console.log(e),
       complete: () => console.log("Operacion terminada")
     })
@@ -51,6 +63,7 @@ export class UserProfileComponent {
       next: (respuesta) => {
         if (respuesta.status == 200) {
           console.log("Usuario eliminado correctamente");
+          alert('Usuario eliminado correctamente, redirigiendo a pagina de inicio')
           this.router.navigate(['/']);
         } else {
           console.log("Se produjo un error por lado del servidor");
