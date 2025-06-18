@@ -23,9 +23,14 @@
     </div>
 
     <div class="form-group">
-      <label for="image">URL de Imagen:</label>
-      <input id="image" type="text" formControlName="image">
+    <label for="image">URL de Imagen:</label>
+    <input id="image" type="text" formControlName="image" (input)="onImageUrlChange()" placeholder="Pega un link de imagen" />
+    <div>o</div>
+    <input type="file" accept="image/*" (change)="onImageFileChange($event)" />
+    <div *ngIf="imagePreview">
+      <img [src]="imagePreview" alt="Vista previa" style="max-width: 200px; margin-top: 10px;" />
     </div>
+  </div>
 
     <button type="submit" [disabled]="productForm.invalid">💾 Guardar cambios</button>
   </form>

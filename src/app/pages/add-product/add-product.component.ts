@@ -13,6 +13,7 @@ import { ProductoService } from '../../services/producto.service';
 })
 export class AddProductComponent {
   productForm: FormGroup;
+  imagePreview: string | ArrayBuffer | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -24,24 +25,47 @@ export class AddProductComponent {
       price: [null, [Validators.required, Validators.min(0)]],
       description: ['', Validators.required],
       category: ['', Validators.required],
-      image: ['', Validators.required]
+      image: ['', Validators.required], // Puede ser base64 o URL
+      imageFile: [null] // Campo auxiliar para el archivo
     });
+  }
+
+  onImageFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+        this.productForm.patchValue({ image: reader.result, imageFile: file });
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onImageUrlChange() {
+    // Si el usuario escribe un link, borra el archivo y muestra preview
+    this.productForm.patchValue({ imageFile: null });
+    this.imagePreview = this.productForm.value.image;
   }
 
   onSubmit() {
-    if (this.productForm.invalid) return;
+  if (this.productForm.invalid) return;
 
-    this.productoService.crearProducto(this.productForm.value).subscribe({
-      next: () => {
-        alert('Producto creado exitosamente');
-        // Truco: navegar a '' sin cambiar la URL, luego a /store
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['/store']);
-        });
-      },
-      error: () => {
-        alert('Error al crear producto');
-      }
-    });
-  }
+  const productData = { ...this.productForm.value };
+  delete productData.imageFile;
+  productData.id = generateRandomId(); // Genera y asigna un id único
+
+  this.productoService.crearProducto(productData).subscribe({
+    next: () => {
+      alert('Producto creado exitosamente');
+      this.router.navigate(['/store']);
+    },
+    error: () => {
+      alert('Error al crear producto');
+    }
+  });
+}
+}
+function generateRandomId(): number {
+  return Math.floor(Math.random() * 1000000000);
 }

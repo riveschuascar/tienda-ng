@@ -15,6 +15,7 @@ import { Product } from '../../interfaces/product';
 export class EditProductComponent {
   productForm: FormGroup;
   productId: number = 0;
+  imagePreview: string | ArrayBuffer | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,7 +28,8 @@ export class EditProductComponent {
       price: [null, [Validators.required, Validators.min(0)]],
       description: ['', Validators.required],
       category: ['', Validators.required],
-      image: ['', Validators.required]
+      image: ['', Validators.required],
+      imageFile: [null]
     });
 
     // Obtener ID del producto desde la URL
@@ -43,15 +45,37 @@ export class EditProductComponent {
           category: producto.category,
           image: producto.image
         });
+        this.imagePreview = producto.image;
       },
       error: () => alert('No se pudo cargar el producto')
     });
   }
 
+  onImageFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+        this.productForm.patchValue({ image: reader.result, imageFile: file });
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onImageUrlChange() {
+    this.productForm.patchValue({ imageFile: null });
+    this.imagePreview = this.productForm.value.image;
+  }
+
   onSubmit() {
     if (this.productForm.invalid) return;
 
-    this.productoService.actualizarProducto(this.productId, this.productForm.value).subscribe({
+    const productData = { ...this.productForm.value };
+    delete productData.imageFile;
+    // No generes ni cambies el id aquí
+
+    this.productoService.actualizarProducto(this.productId, productData).subscribe({
       next: () => {
         alert('Producto actualizado');
         this.router.navigate(['/store']);

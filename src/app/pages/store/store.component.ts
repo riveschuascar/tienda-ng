@@ -41,17 +41,19 @@ export class StoreComponent implements OnInit {
     });
   }
 
-  eliminarProducto(id: number) {
-    if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
-      this.productoService.eliminarProducto(id).subscribe({
-        next: () => {
-          alert('Producto eliminado');
-          this.listaDeProductos = this.listaDeProductos.filter(p => p.id !== id);
-        },
-        error: () => alert('No se pudo eliminar el producto')
-      });
-    }
+ eliminarProducto(id: number) {
+  if (!id) {
+    alert('ID inválido');
+    return;
   }
+  this.productoService.eliminarProducto(id).subscribe({
+    next: () => {
+      alert('Producto eliminado');
+      this.cargarProductos();
+    },
+    error: () => alert('No se pudo eliminar el producto')
+  });
+}
 
   addToCart(product: Product) {
   this.cartService.addToCart(product).subscribe({
