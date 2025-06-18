@@ -26,6 +26,7 @@ export class SignupComponent {
   constructor(private userService: UsuarioService) {}
 
   onSubmit() {
+    console.log('Formulario enviado:', this.user);
     this.userService.addUser(this.user).subscribe({
       next: (res) => {
         console.log('Usuario creado:', res);
