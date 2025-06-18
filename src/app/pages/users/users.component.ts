@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../../services/UserService';
+import { UsuarioService } from '../../services/usuario.service';
 import { RouterLink } from '@angular/router';
 import { User } from '../../interfaces/user';
 
@@ -14,7 +14,7 @@ import { User } from '../../interfaces/user';
 export class UsersComponent implements OnInit {
   usuarios: User[] = [];
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UsuarioService) {}
 
   ngOnInit(): void {
     this.userService.getAllUsers().subscribe({
