@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class UsuarioService {
   url = 'http://localhost:3000/api/usuarios';
+  urlLogin = 'http://localhost:3000/api/login';
 
   constructor(private http: HttpClient) { }
 
@@ -33,4 +34,8 @@ export class UsuarioService {
     let urlFinal = this.url + idUsuario;
     return this.http.delete(urlFinal, { observe: 'response' });
   }
+login(email: string, password: string): Observable<User> {
+  return this.http.post<User>(this.urlLogin, { email, password });
+}
+  
 }

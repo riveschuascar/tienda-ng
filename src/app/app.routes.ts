@@ -13,6 +13,8 @@ import { CartComponent } from './pages/cart/cart.component';
 import { UsersComponent } from './pages/users/users.component';
 import { SignupComponent } from './elements/signup/signup.component';
 import { UserInfoComponent } from './elements/user-info/user-info.component';
+import { LoginComponent } from './pages/login/login.component';
+
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -23,6 +25,7 @@ export const routes: Routes = [
   { path: 'add-product', component: AddProductComponent },
   { path: 'cart', component: CartComponent },
   { path: 'users', component: UsersComponent },
+  { path: 'login', component: LoginComponent},
   { path: 'edit-product/:id', component: EditProductComponent },
   { path: 'profile/:id', component: UserProfileComponent},
   { path: 'signup', component: SignupComponent },

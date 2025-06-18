@@ -1,0 +1,13 @@
+<div class="login-wrapper">
+  <form (ngSubmit)="login()" #loginForm="ngForm" class="login-form">
+    <h2>🔐 Iniciar Sesión</h2>
+
+    <label for="email">Correo electrónico</label>
+    <input type="email" id="email" name="email" [(ngModel)]="email" required placeholder="ejemplo@correo.com" />
+
+    <label for="password">Contraseña</label>
+    <input type="password" id="password" name="password" [(ngModel)]="password" required placeholder="••••••••" />
+
+    <button type="submit" [disabled]="loginForm.invalid">Ingresar</button>
+  </form>
+</div>
