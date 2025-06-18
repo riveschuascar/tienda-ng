@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { UserService } from '../../services/UserService';
+import { UsuarioService } from '../../services/usuario.service';
 import { User } from '../../interfaces/user';
 
 @Component({
@@ -22,7 +22,7 @@ export class UserInfoComponent {
   userData?: User;
   errorMsg: string = '';
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UsuarioService) {}
 
   fetchUser() {
     if (!this.userId || this.userId <= 0) {

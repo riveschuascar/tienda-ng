@@ -3,7 +3,6 @@ import { PartialUser } from '../../interfaces/user';
 import { UsuarioService } from '../../services/usuario.service';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../../services/UserService';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,8 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class UserProfileComponent {
   route = inject(ActivatedRoute);
-  servicioUsuarios1: UsuarioService = inject(UsuarioService);
-  servicioUsuarios2: UserService = inject(UserService);
+  servicioUsuarios: UsuarioService = inject(UsuarioService);
 
   @Input() nombreUsuario: string = '';
   @Input() correo: string = '';
@@ -26,7 +24,7 @@ export class UserProfileComponent {
 
   constructor(private router: Router) {
     const idUsuario = Number(this.route.snapshot.params['id']);
-    this.servicioUsuarios2.getUser(idUsuario).subscribe({
+    this.servicioUsuarios.getUser(idUsuario).subscribe({
       next: (value) => {
         this.usuario = value;
         this.nombreUsuario = `${value.name.firstname} ${value.name.lastname}`;
@@ -39,7 +37,7 @@ export class UserProfileComponent {
   }
 
   actualizarDatosUsuario(idUsuario: number, nombreUsuario: string, correo: string, contrasena: string) {
-    this.servicioUsuarios1.actualizarUsuario(idUsuario, nombreUsuario, correo, contrasena).subscribe({
+    this.servicioUsuarios.actualizarUsuario(idUsuario, nombreUsuario, correo, contrasena).subscribe({
       next: (respuesta) => {
         switch (respuesta.status) {
           case 200:
@@ -59,7 +57,7 @@ export class UserProfileComponent {
   }
 
   eliminarUsuario(idUsuario: number) {
-    this.servicioUsuarios1.eliminarUsuario(idUsuario).subscribe({
+    this.servicioUsuarios.eliminarUsuario(idUsuario).subscribe({
       next: (respuesta) => {
         if (respuesta.status == 200) {
           console.log("Usuario eliminado correctamente");
