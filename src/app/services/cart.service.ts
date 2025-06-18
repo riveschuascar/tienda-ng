@@ -1,42 +1,43 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private cart: Product[] = [];
-  private cartSubject = new BehaviorSubject<Product[]>([]);
+  private apiUrl = 'http://localhost:3000/api/cart';
 
-  getCart() {
-    return this.cartSubject.asObservable();
+  constructor(private http: HttpClient) {}
+
+  // Obtener todos los productos del carrito
+  getCart(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.apiUrl);
   }
 
-  addToCart(product: Product) {
-    this.cart.push(product);
-    this.cartSubject.next(this.cart);
+  // Agregar un producto al carrito
+  addToCart(product: Product): Observable<Product> {
+    return this.http.post<Product>(this.apiUrl, product);
   }
 
-  updateQuantity(productId: number, quantity: number) {
-    this.cart = this.cart.map(p =>
-      p.id === productId ? { ...p, quantity: quantity } : p
-    );
-    this.cartSubject.next(this.cart);
+  // Actualizar la cantidad de un producto
+  updateQuantity(productId: number, quantity: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${productId}`, { quantity });
   }
 
-  removeFromCart(productId: number) {
-    this.cart = this.cart.filter(p => p.id !== productId);
-    this.cartSubject.next(this.cart);
+  // Eliminar un producto del carrito
+  removeFromCart(productId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${productId}`);
   }
 
-  clearCart() {
-    this.cart = [];
-    this.cartSubject.next([]);
+  // Vaciar el carrito
+  clearCart(): Observable<any> {
+    return this.http.delete(this.apiUrl);
   }
-  getCartItem(id: number): Product | undefined {
-    return this.cart.find(p => p.id === id);
+
+  // Obtener un producto por ID (si lo necesitas)
+  getCartItem(productId: number): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}/${productId}`);
   }
 }
-
-

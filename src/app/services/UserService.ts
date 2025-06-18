@@ -8,7 +8,7 @@ import { User } from '../interfaces/user';
   providedIn: 'root'
 })
 export class UserService {
-  private url = 'https://fakestoreapi.com/users';
+  private url = 'http://localhost:3000/api/usuarios';
 
   constructor(private http: HttpClient) {}
 

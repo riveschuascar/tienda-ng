@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductoService {
-  url = 'https://fakestoreapi.com/products';
+  url = 'http://localhost:3000/api/products';
 
   constructor(private http: HttpClient) { }
 
@@ -24,12 +24,11 @@ export class ProductoService {
   }
 
   actualizarProducto(id: number, producto: Omit<Product, 'id' | 'rating'>): Observable<Product> {
-  return this.http.put<Product>(`${this.url}/${id}`, producto);
+    return this.http.put<Product>(`${this.url}/${id}`, producto);
   }
 
   eliminarProducto(id: number): Observable<any> {
-  return this.http.delete(`${this.url}/${id}`);
+    return this.http.delete(`${this.url}/${id}`);
   }
-
 }
 
