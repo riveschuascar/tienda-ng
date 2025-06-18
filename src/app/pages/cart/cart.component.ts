@@ -11,51 +11,59 @@ import { Product } from '../../interfaces/product';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  cartItems: Product[] = []; // 🔄 ahora se llama cartItems para coincidir con el HTML
+  cartItems: Product[] = [];
 
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
+    this.loadCart();
+  }
+
+  loadCart() {
     this.cartService.getCart().subscribe(products => {
       this.cartItems = products;
     });
   }
 
-  onCantidadCambiada(event: Event, productId: number) {
-    const input = event.target as HTMLInputElement;
-    const cantidad = parseInt(input.value, 10);
-    this.updateQuantity(productId, isNaN(cantidad) ? 1 : cantidad);
+  updateQuantity(productId: number, cantidad: number) {
+    this.cartService.updateQuantity(productId, cantidad).subscribe(() => {
+      this.loadCart();
+    });
   }
 
-  updateQuantity(productId: number, cantidad: number) {
-    this.cartService.updateQuantity(productId, cantidad);
+  incrementQuantity(productId: number) {
+    const item = this.cartItems.find(p => p.id === productId);
+    if (item) {
+      const newQuantity = (item.quantity || 1) + 1;
+      this.cartService.updateQuantity(productId, newQuantity).subscribe(() => {
+        this.loadCart();
+      });
+    }
+  }
+
+  decrementQuantity(productId: number) {
+    const item = this.cartItems.find(p => p.id === productId);
+    if (item && (item.quantity || 1) > 1) {
+      const newQuantity = (item.quantity || 1) - 1;
+      this.cartService.updateQuantity(productId, newQuantity).subscribe(() => {
+        this.loadCart();
+      });
+    }
   }
 
   removeItem(productId: number) {
-    this.cartService.removeFromCart(productId);
+    this.cartService.removeFromCart(productId).subscribe(() => {
+      this.loadCart();
+    });
+  }
+
+  clearCart() {
+    this.cartService.clearCart().subscribe(() => {
+      this.loadCart();
+    });
   }
 
   getTotal(): number {
     return this.cartItems.reduce((total, p) => total + p.price * (p.quantity || 1), 0);
   }
-  incrementQuantity(productId: number) {
-  const item = this.cartItems.find(p => p.id === productId);
-  if (item) {
-    const newQuantity = (item.quantity || 1) + 1;
-    this.cartService.updateQuantity(productId, newQuantity);
-  }
-}
-
-decrementQuantity(productId: number) {
-  const item = this.cartItems.find(p => p.id === productId);
-  if (item && (item.quantity || 1) > 1) {
-    const newQuantity = (item.quantity || 1) - 1;
-    this.cartService.updateQuantity(productId, newQuantity);
-  }
-}
-clearCart() {
-  this.cartService.clearCart();
-}
-
-
 }

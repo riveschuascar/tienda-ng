@@ -2,7 +2,15 @@
 
 <ul>
   <li *ngFor="let user of usuarios">
-    {{ user.name.firstname }} {{ user.name.lastname }} — {{ user.email }}
+    <strong>{{ user.name?.firstname }} {{ user.name?.lastname }}</strong><br>
+    🧑‍💻 Usuario: {{ user.username }}<br>
+    📧 Correo: {{ user.email }}<br>
+    📱 Teléfono: {{ user.phone || 'No registrado' }}<br>
+    🏠 Dirección: 
+    {{ user.address?.street }} #{{ user.address?.number }},
+    {{ user.address?.city }} ({{ user.address?.zipcode }})<br>
+    🌍 Geo: {{ user.address?.geolocation?.lat }}, {{ user.address?.geolocation?.long }}<br>
     <a [routerLink]="['/profile', user.id]">Ver Perfil</a>
+    <hr>
   </li>
 </ul>

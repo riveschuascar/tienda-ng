@@ -54,7 +54,13 @@ export class StoreComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    this.cartService.addToCart(product);
-    alert('Producto agregado al carrito');
-  }
+  this.cartService.addToCart(product).subscribe({
+    next: () => {
+      alert('Producto agregado al carrito');
+    },
+    error: () => {
+      alert('No se pudo agregar el producto al carrito');
+    }
+  });
+}
 }
