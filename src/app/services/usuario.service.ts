@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UsuarioService {
-  url = 'http://localhost:3000/api/usuarios';
-  urlLogin = 'http://localhost:3000/api/login';
+  url = 'https://backt-8ll2.onrender.com/api/usuarios';
+  urlLogin = 'https://backt-8ll2.onrender.com/api/login';
 
   constructor(private http: HttpClient) { }
 
@@ -37,5 +37,8 @@ export class UsuarioService {
 login(email: string, password: string): Observable<User> {
   return this.http.post<User>(this.urlLogin, { email, password });
 }
-  
+  getUserByEmail(email: string): Observable<User> {
+  return this.http.get<User>(`${this.url}/email/${email}`);
+}
+
 }

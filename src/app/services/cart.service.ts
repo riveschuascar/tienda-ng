@@ -7,7 +7,7 @@ import { Product } from '../interfaces/product';
   providedIn: 'root'
 })
 export class CartService {
-  private apiUrl = 'http://localhost:3000/api/cart';
+  private apiUrl = 'https://backt-8ll2.onrender.com/api/cart';
 
   constructor(private http: HttpClient) {}
 

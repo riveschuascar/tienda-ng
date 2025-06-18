@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductoService {
-  url = 'http://localhost:3000/api/products';
+  url = 'https://backt-8ll2.onrender.com/api/products';
 
   constructor(private http: HttpClient) { }
 
